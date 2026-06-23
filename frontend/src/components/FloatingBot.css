@@ -1,0 +1,222 @@
+.floating-bot-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Tlačítko (Zavřený stav) */
+.bot-toggle-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #000;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+}
+
+.bot-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+.bot-toggle-btn.hidden {
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Chatovací Okno */
+.bot-chat-window {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 350px;
+  height: 500px;
+  max-height: calc(100vh - 4rem);
+  background: var(--node-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  
+  /* Animace otevření */
+  transform-origin: bottom right;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+}
+
+.bot-chat-window.open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Hlavička */
+.bot-header {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.bot-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary);
+}
+
+.bot-header-title h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--node-text);
+}
+
+.bot-header-title span {
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bot-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.bot-close-btn:hover {
+  color: #ef4444;
+}
+
+/* Zprávy */
+.bot-messages {
+  flex-grow: 1;
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bot-messages::-webkit-scrollbar {
+  width: 6px;
+}
+.bot-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.bot-message-row {
+  display: flex;
+  width: 100%;
+}
+
+.bot-message-row.user {
+  justify-content: flex-end;
+}
+
+.bot-message-row.bot {
+  justify-content: flex-start;
+}
+
+.bot-message-bubble {
+  max-width: 80%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.bot.bot-message-row .bot-message-bubble {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--node-text);
+  border-bottom-left-radius: 2px;
+}
+
+.user.bot-message-row .bot-message-bubble {
+  background: var(--primary);
+  color: #000;
+  font-weight: 500;
+  border-bottom-right-radius: 2px;
+}
+
+/* Formulář (Input) */
+.bot-input-area {
+  display: flex;
+  padding: 1rem;
+  gap: 0.5rem;
+  border-top: 1px solid var(--glass-border);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.bot-input-area input {
+  flex-grow: 1;
+  background: var(--bg-color);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 20px;
+  outline: none;
+  font-family: 'Raleway', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.bot-input-area input:focus {
+  border-color: var(--primary);
+}
+
+.bot-input-area button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.bot-input-area button:disabled {
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.bot-input-area button:not(:disabled):hover {
+  transform: scale(1.05);
+}
+
+/* Responzivita */
+@media (max-width: 480px) {
+  .bot-chat-window {
+    width: calc(100vw - 2rem);
+    height: calc(100vh - 6rem);
+    bottom: -1rem;
+    right: -1rem;
+  }
+}

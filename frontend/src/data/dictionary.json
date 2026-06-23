@@ -1,0 +1,470 @@
+[
+  {
+    "abbr": "AAA",
+    "en": "Authentication, Authorization, and Accounting",
+    "cs": "Autentizace, autorizace a účtování",
+    "desc": "Bezpečnostní rámec používaný k řízení přístupu k síťovým zdrojům. Zajišťuje ověření identity, přidělení práv a sledování aktivity uživatele."
+  },
+  {
+    "abbr": "ACL",
+    "en": "Access Control List",
+    "cs": "Seznam řízení přístupu",
+    "desc": "Sada pravidel nakonfigurovaných na směrovači nebo firewallu, která určuje, zda bude síťový provoz povolen nebo zahozen na základě IP adres, portů nebo protokolů."
+  },
+  {
+    "abbr": "AD",
+    "en": "Administrative Distance",
+    "cs": "Administrativní vzdálenost",
+    "desc": "Metrika používaná směrovači k určení spolehlivosti zdroje směrovací informace. Čím nižší hodnota (např. 1 pro statickou routu, 90 pro EIGRP), tím důvěryhodnější cesta."
+  },
+  {
+    "abbr": "AES",
+    "en": "Advanced Encryption Standard",
+    "cs": "Pokročilý standard šifrování",
+    "desc": "Silný symetrický šifrovací algoritmus široce používaný v technologiích VPN, IPsec a WPA2/WPA3 k zabezpečení přenášených dat."
+  },
+  {
+    "abbr": "AP",
+    "en": "Access Point",
+    "cs": "Přístupový bod",
+    "desc": "Zařízení umožňující bezdrátovým zařízením (např. notebookům) připojit se k pevné kabelové LAN síti."
+  },
+  {
+    "abbr": "API",
+    "en": "Application Programming Interface",
+    "cs": "Rozhraní pro programování aplikací",
+    "desc": "Sada pravidel umožňující různým softwarovým aplikacím (nebo SDN kontrolerům) vzájemně komunikovat. V moderním CCNA se často objevuje u síťové automatizace."
+  },
+  {
+    "abbr": "ARP",
+    "en": "Address Resolution Protocol",
+    "cs": "Protokol pro překlad adres",
+    "desc": "Protokol využívaný k překladu síťových IP adres (L3) na fyzické MAC adresy (L2) v lokální síti."
+  },
+  {
+    "abbr": "AS",
+    "en": "Autonomous System",
+    "cs": "Autonomní systém",
+    "desc": "Kolekce IP sítí a směrovačů pod kontrolou jednoho subjektu (např. poskytovatele internetu ISP), které prezentují společnou směrovací politiku do internetu."
+  },
+  {
+    "abbr": "ASIC",
+    "en": "Application-Specific Integrated Circuit",
+    "cs": "Integrovaný obvod pro specifické aplikace",
+    "desc": "Specializovaný hardwarový čip uvnitř switchů a routerů zajišťující extrémně rychlé (hardwarové) zpracování a přeposílání paketů."
+  },
+  {
+    "abbr": "BGP",
+    "en": "Border Gateway Protocol",
+    "cs": "Protokol hraniční brány",
+    "desc": "Hlavní směrovací protokol internetu (Exterior Gateway Protocol), který propojuje autonomní systémy (AS) mezi poskytovateli připojení."
+  },
+  {
+    "abbr": "BPDU",
+    "en": "Bridge Protocol Data Unit",
+    "cs": "Datová jednotka protokolu mostu",
+    "desc": "Speciální rámce, které si mezi sebou vyměňují switche při budování topologie bez smyček v rámci Spanning Tree Protokolu (STP)."
+  },
+  {
+    "abbr": "CAM",
+    "en": "Content Addressable Memory",
+    "cs": "Paměť s adresováním podle obsahu",
+    "desc": "Speciální vysokorychlostní paměť v přepínačích (switches), kam se ukládá tzv. MAC tabulka (mapování MAC adres na konkrétní porty)."
+  },
+  {
+    "abbr": "CDP",
+    "en": "Cisco Discovery Protocol",
+    "cs": "Protokol pro objevování zařízení Cisco",
+    "desc": "Proprietární L2 protokol společnosti Cisco, který slouží ke sběru informací o přímo připojených sousedních Cisco zařízeních."
+  },
+  {
+    "abbr": "CEF",
+    "en": "Cisco Express Forwarding",
+    "cs": "Cisco expresní předávání",
+    "desc": "Pokročilá technologie vrstvy 3 přepínání na Cisco routerech. Předvytváří tabulky v hardwaru (FIB) pro rychlejší přeposílání paketů bez zatížení procesoru."
+  },
+  {
+    "abbr": "CIDR",
+    "en": "Classless Inter-Domain Routing",
+    "cs": "Beztřídní směrování mezi doménami",
+    "desc": "Metoda přidělování IP adres a směrování, která nahradila zastaralý systém tříd (A,B,C) a umožnila efektivnější využití adresního prostoru s libovolnou maskou (např. /24)."
+  },
+  {
+    "abbr": "CLI",
+    "en": "Command Line Interface",
+    "cs": "Rozhraní příkazového řádku",
+    "desc": "Textové rozhraní pro konfiguraci síťových zařízení. Základní nástroj pro administraci Cisco routerů a switchů."
+  },
+  {
+    "abbr": "CSMA/CA",
+    "en": "Carrier Sense Multiple Access with Collision Avoidance",
+    "cs": "Vícenásobný přístup s nasloucháním nosné a předcházením kolizím",
+    "desc": "Mechanismus řízení přístupu používaný primárně v bezdrátových sítích Wi-Fi (802.11) ke snížení pravděpodobnosti vzniku kolizí v éteru."
+  },
+  {
+    "abbr": "CSMA/CD",
+    "en": "Carrier Sense Multiple Access with Collision Detection",
+    "cs": "Vícenásobný přístup s nasloucháním nosné a detekcí kolizí",
+    "desc": "Mechanismus řízení přístupu v historických ethernetových sítích (před zavedením switchů), který detekoval a řešil kolize při vysílání po společném kabelu."
+  },
+  {
+    "abbr": "DHCP",
+    "en": "Dynamic Host Configuration Protocol",
+    "cs": "Protokol pro dynamickou konfiguraci hostitele",
+    "desc": "Protokol automaticky přidělující IP adresy, masky podsítě, výchozí brány a DNS servery zařízením v síti (proces D.O.R.A.)."
+  },
+  {
+    "abbr": "DNS",
+    "en": "Domain Name System",
+    "cs": "Systém jmen domén",
+    "desc": "Distribuovaný systém pro překlad textových doménových jmen (např. www.seznam.cz) na číselné IP adresy, kterým počítače rozumí."
+  },
+  {
+    "abbr": "DTP",
+    "en": "Dynamic Trunking Protocol",
+    "cs": "Protokol pro dynamické vytváření trunku",
+    "desc": "Proprietární L2 protokol Cisco sloužící k automatickému vyjednání trunk linky (přenos více VLAN) mezi dvěma přímo spojenými přepínači."
+  },
+  {
+    "abbr": "EIGRP",
+    "en": "Enhanced Interior Gateway Routing Protocol",
+    "cs": "Rozšířený protokol vnitřní brány",
+    "desc": "Pokročilý distance-vector směrovací protokol vyvinutý společností Cisco pro rychlou a efektivní výměnu routovacích tabulek."
+  },
+  {
+    "abbr": "FCS",
+    "en": "Frame Check Sequence",
+    "cs": "Kontrolní součet rámce",
+    "desc": "Pole v patičce Ethernetového rámce L2 sloužící k detekci chyb způsobených rušením při přenosu po kabelu. Využívá výpočet CRC."
+  },
+  {
+    "abbr": "FHRP",
+    "en": "First Hop Redundancy Protocol",
+    "cs": "Protokol redundance prvního skoku",
+    "desc": "Zastřešující kategorie protokolů (jako HSRP nebo VRRP), které zajišťují, že síť nevypadne, pokud selže fyzický router fungující jako výchozí brána."
+  },
+  {
+    "abbr": "FTP",
+    "en": "File Transfer Protocol",
+    "cs": "Protokol pro přenos souborů",
+    "desc": "Spolehlivý spojovaně orientovaný (TCP) protokol vrstvy L7 pro přenos, stahování a správu souborů na vzdáleném serveru."
+  },
+  {
+    "abbr": "GRE",
+    "en": "Generic Routing Encapsulation",
+    "cs": "Obecná směrovací enkapsulace",
+    "desc": "Tunelovací protokol navržený firmou Cisco, který zapouzdřuje rozličné protokoly do IP tunelu (často se kombinuje s IPsec pro šifrovanou VPN)."
+  },
+  {
+    "abbr": "HSRP",
+    "en": "Hot Standby Router Protocol",
+    "cs": "Pohotovostní směrovací protokol",
+    "desc": "Cisco FHRP protokol poskytující vysokou dostupnost sítí tím, že vytváří virtuální výchozí bránu sdílenou mezi více fyzickými směrovači."
+  },
+  {
+    "abbr": "HTTP",
+    "en": "HyperText Transfer Protocol",
+    "cs": "Hypertextový přenosový protokol",
+    "desc": "Základní protokol aplikační vrstvy pro přenos webových stránek a dat v čistém, nešifrovaném textu."
+  },
+  {
+    "abbr": "HTTPS",
+    "en": "HyperText Transfer Protocol Secure",
+    "cs": "Zabezpečený hypertextový přenosový protokol",
+    "desc": "Rozšíření HTTP, které k přenosu dat přidává šifrování pomocí protokolů SSL/TLS, čímž brání odposlechu (MITM)."
+  },
+  {
+    "abbr": "ICMP",
+    "en": "Internet Control Message Protocol",
+    "cs": "Protokol internetových řídicích zpráv",
+    "desc": "Diagnostický a chybový protokol vrstvy L3, který se používá například pro utility 'ping' a 'traceroute'."
+  },
+  {
+    "abbr": "IEEE",
+    "en": "Institute of Electrical and Electronics Engineers",
+    "cs": "Institut pro elektrotechnické a elektronické inženýrství",
+    "desc": "Mezinárodní organizace podílející se na vývoji mnoha průmyslových a síťových standardů, např. řady 802.3 (Ethernet) nebo 802.11 (Wi-Fi)."
+  },
+  {
+    "abbr": "IOS",
+    "en": "Internetwork Operating System",
+    "cs": "Mezisíťový operační systém",
+    "desc": "Základní operační systém pohánějící většinu tradičních síťových přepínačů a směrovačů značky Cisco."
+  },
+  {
+    "abbr": "IP",
+    "en": "Internet Protocol",
+    "cs": "Internetový protokol",
+    "desc": "Základní protokol síťové vrstvy L3 zajišťující doručování paketů mezi sítěmi na základě logické adresace."
+  },
+  {
+    "abbr": "IPSec",
+    "en": "Internet Protocol Security",
+    "cs": "Zabezpečení internetového protokolu",
+    "desc": "Sada protokolů sloužící k bezpečné výměně paketů na IP vrstvě pomocí autentizace a šifrování (základ pro bezpečné VPN)."
+  },
+  {
+    "abbr": "IPv4",
+    "en": "Internet Protocol version 4",
+    "cs": "Internetový protokol verze 4",
+    "desc": "Čtvrtá verze IP využívající 32bitové adresy rozdělené do čtyř oktetů (např. 192.168.1.1). Dnes trpí nedostatkem volných adres."
+  },
+  {
+    "abbr": "IPv6",
+    "en": "Internet Protocol version 6",
+    "cs": "Internetový protokol verze 6",
+    "desc": "Nejnovější verze IP s obrovským 128bitovým adresním prostorem, zapsaným v hexadecimálním formátu, řešící vyčerpání IPv4."
+  },
+  {
+    "abbr": "JSON",
+    "en": "JavaScript Object Notation",
+    "cs": "Notace objektů JavaScriptu",
+    "desc": "Strukturovaný textový formát dat oblíbený v síťové programovatelnosti (SDN, REST API) pro přenos konfigurací mezi stroji."
+  },
+  {
+    "abbr": "LACP",
+    "en": "Link Aggregation Control Protocol",
+    "cs": "Protokol pro řízení agregace linek",
+    "desc": "Otevřený standard (IEEE 802.3ad), který umožňuje automatické spojení několika fyzických kabelů do jednoho logického spoje (EtherChannel)."
+  },
+  {
+    "abbr": "LAN",
+    "en": "Local Area Network",
+    "cs": "Lokální počítačová síť",
+    "desc": "Síť pokrývající omezenou geografickou oblast, např. domácnost, kancelář nebo budovu školy. Obvykle využívá Ethernet nebo Wi-Fi."
+  },
+  {
+    "abbr": "LLDP",
+    "en": "Link Layer Discovery Protocol",
+    "cs": "Protokol pro objevování na linkové vrstvě",
+    "desc": "Nezávislý standardní L2 protokol (na rozdíl od CDP) sloužící zařízením v síti k oznamování své identity, schopností a sousedů napříč různými výrobci."
+  },
+  {
+    "abbr": "MAC",
+    "en": "Media Access Control",
+    "cs": "Řízení přístupu k médiu",
+    "desc": "Spodní podvrstva linkové vrstvy. Termín označuje hardwarovou, fyzickou a (teoreticky) nezměnitelnou 48bitovou adresu síťové karty (např. 00:1A:2B:3C:4D:5E)."
+  },
+  {
+    "abbr": "MDIX",
+    "en": "Medium Dependent Interface Crossover",
+    "cs": "Automatické křížení na závislém médiu",
+    "desc": "Funkce síťových portů, která automaticky rozpozná typ zapojeného kabelu (rovný/křížený) a sama prohodí vysílací a přijímací piny."
+  },
+  {
+    "abbr": "NAT",
+    "en": "Network Address Translation",
+    "cs": "Překlad síťových adres",
+    "desc": "Mechanismus prováděný routerem, který překládá privátní (neveřejné) IP adresy vnitřní sítě na jednu veřejnou IP adresu pro přístup do internetu."
+  },
+  {
+    "abbr": "NTP",
+    "en": "Network Time Protocol",
+    "cs": "Síťový protokol pro synchronizaci času",
+    "desc": "Protokol sloužící k synchronizaci systémového času napříč všemi servery a routery v síti, nezbytný pro správné logování a certifikáty."
+  },
+  {
+    "abbr": "NVRAM",
+    "en": "Non-Volatile Random Access Memory",
+    "cs": "Energeticky nezávislá paměť s přímým přístupem",
+    "desc": "Paměť v routerech a switchích Cisco, která uchovává konfiguraci i po odpojení napájení (tzv. startup-config)."
+  },
+  {
+    "abbr": "OSI",
+    "en": "Open Systems Interconnection",
+    "cs": "Referenční model propojování otevřených systémů",
+    "desc": "Koncepční sedmivrstvý model definující komunikační funkce telekomunikačního systému nezávisle na jeho vnitřní struktuře a technologii."
+  },
+  {
+    "abbr": "OSPF",
+    "en": "Open Shortest Path First",
+    "cs": "Protokol nejkratší cesty první",
+    "desc": "Link-state směrovací protokol vnitřní brány určený pro rozlehlé podnikové sítě, který k nalezení nejlepší trasy používá Dijkstrův algoritmus."
+  },
+  {
+    "abbr": "PAgP",
+    "en": "Port Aggregation Protocol",
+    "cs": "Protokol agregace portů",
+    "desc": "Proprietární protokol Cisco (obdoba LACP) sloužící k automatickému spojování více fyzických linek do jednoho logického EtherChannelu."
+  },
+  {
+    "abbr": "PAT",
+    "en": "Port Address Translation",
+    "cs": "Překlad adres portů",
+    "desc": "Rozšíření NATu (někdy označováno jako NAT Overload), které umožňuje tisícům privátních IP adres sdílet jedinou veřejnou IP adresu tím, že spojení odlišuje pomocí portů."
+  },
+  {
+    "abbr": "PDU",
+    "en": "Protocol Data Unit",
+    "cs": "Datová jednotka protokolu",
+    "desc": "Obecný termín pro blok dat přenášený přes síť na konkrétní vrstvě (např. Frame na L2, Packet na L3, Segment na L4)."
+  },
+  {
+    "abbr": "PoE",
+    "en": "Power over Ethernet",
+    "cs": "Napájení přes Ethernet",
+    "desc": "Technologie, která umožňuje vést elektrickou energii i data po jediném standardním krouceném ethernetovém kabelu (např. pro napájení IP kamer a AP)."
+  },
+  {
+    "abbr": "PPP",
+    "en": "Point-to-Point Protocol",
+    "cs": "Protokol dvou bodů",
+    "desc": "Starší protokol linkové vrstvy pro přímé propojení dvou uzlů po WAN linkách. Umožňuje autentizaci a kompresi."
+  },
+  {
+    "abbr": "QoS",
+    "en": "Quality of Service",
+    "cs": "Kvalita služeb",
+    "desc": "Sada technik pro řízení a upřednostňování síťového provozu tak, aby kritické aplikace (např. hlasové hovory - VoIP) měly přednost před stahováním."
+  },
+  {
+    "abbr": "RADIUS",
+    "en": "Remote Authentication Dial-In User Service",
+    "cs": "Služba vzdáleného ověřování připojených uživatelů",
+    "desc": "Otevřený standardní protokol pro AAA zabezpečení. Ověřuje uživatele připojující se k síti (např. přes 802.1X, Wi-Fi nebo VPN)."
+  },
+  {
+    "abbr": "REST",
+    "en": "Representational State Transfer",
+    "cs": "Reprezentační přenos stavu",
+    "desc": "Architektonický styl webových služeb. REST API rozhraní se hojně využívá v CCNA pro programovatelnost a automatizaci moderních sítí pomocí skriptů (např. v Pythonu)."
+  },
+  {
+    "abbr": "RIP",
+    "en": "Routing Information Protocol",
+    "cs": "Směrovací informační protokol",
+    "desc": "Jeden z nejstarších distance-vector směrovacích protokolů, používající počet přeskoků (hop count) jako jedinou metriku pro určení nejlepší cesty (max 15 hopů)."
+  },
+  {
+    "abbr": "ROMMON",
+    "en": "ROM Monitor",
+    "cs": "ROM monitor",
+    "desc": "Základní diagnostický systém v Cisco směrovačích, který slouží k obnově poškozeného IOS systému nebo resetování ztraceného hesla."
+  },
+  {
+    "abbr": "RSTP",
+    "en": "Rapid Spanning Tree Protocol",
+    "cs": "Rychlý protokol kostry grafu",
+    "desc": "Vylepšená verze STP (802.1w), která výrazně zkracuje dobu potřebnou k přepočtu a odblokování sítě v případě výpadku (z 50 sekund na milisekundy)."
+  },
+  {
+    "abbr": "SDN",
+    "en": "Software-Defined Networking",
+    "cs": "Softwarově definované sítě",
+    "desc": "Moderní architektonický přístup, kde je řídící vrstva sítě (Control Plane) oddělena od datové vrstvy (Data Plane) a je spravována centrálním kontrolérem (např. Cisco DNA)."
+  },
+  {
+    "abbr": "SFP",
+    "en": "Small Form-factor Pluggable",
+    "cs": "Kompaktní zasouvací modul",
+    "desc": "Maličký výměnný modul (transceiver) zasouvaný do optických nebo ethernetových portů u switchů. Umožňuje měnit typ připojení podle potřeb (např. optika vs metalika)."
+  },
+  {
+    "abbr": "SLAAC",
+    "en": "Stateless Address Autoconfiguration",
+    "cs": "Bezstavová autokonfigurace adres",
+    "desc": "Způsob, kterým si počítače v sítích IPv6 umí samy sobě vygenerovat a přidělit celosvětově unikátní adresu bez použití centrálního DHCP serveru."
+  },
+  {
+    "abbr": "SNMP",
+    "en": "Simple Network Management Protocol",
+    "cs": "Jednoduchý protokol pro správu sítě",
+    "desc": "Standardní protokol L7 určený pro sběr statistik, monitorování zdraví a odesílání chybových zpráv (trapů) ze síťových zařízení na centrální server."
+  },
+  {
+    "abbr": "SSH",
+    "en": "Secure Shell",
+    "cs": "Zabezpečený shell",
+    "desc": "Bezpečný šifrovaný protokol pro bezpečné přihlášení a příkazovou správu vzdálených zařízení. Slouží jako přímá a bezpečná náhrada zastaralého Telnetu."
+  },
+  {
+    "abbr": "STP",
+    "en": "Spanning Tree Protocol",
+    "cs": "Protokol kostry grafu",
+    "desc": "L2 protokol běžící na switchích, který zamezuje vzniku nekonečných smyček v síti s redundantními linkami tím, že logicky blokuje nepotřebné cesty."
+  },
+  {
+    "abbr": "SVI",
+    "en": "Switch Virtual Interface",
+    "cs": "Virtuální rozhraní přepínače",
+    "desc": "Logický L3 port nastavený na vícevrstvém switchi, reprezentující celou VLAN (např. interface vlan 10). Často slouží jako výchozí brána pro zařízení uvnitř této VLAN."
+  },
+  {
+    "abbr": "TACACS+",
+    "en": "Terminal Access Controller Access-Control System Plus",
+    "cs": "Systém řízení přístupu řadiče přístupu z terminálu plus",
+    "desc": "Cisco proprietární bezpečnostní AAA protokol využívaný primárně k detailní autentizaci administrátorů, kteří se přihlašují na samotné switch a routery."
+  },
+  {
+    "abbr": "TCP",
+    "en": "Transmission Control Protocol",
+    "cs": "Protokol řízení přenosu",
+    "desc": "Spojovaně orientovaný protokol transportní vrstvy L4, zaručující bezchybné doručení dat ve správném pořadí (tzv. Three-Way Handshake)."
+  },
+  {
+    "abbr": "TFTP",
+    "en": "Trivial File Transfer Protocol",
+    "cs": "Jednoduchý protokol pro přenos souborů",
+    "desc": "Velmi odlehčená, nespojovaná varianta FTP běžící na UDP portu 69, typicky používaná pro rychlé zálohování konfigurací Cisco routerů bez autentizace."
+  },
+  {
+    "abbr": "TTL",
+    "en": "Time to Live",
+    "cs": "Doba života",
+    "desc": "Položka v hlavičce IPv4 paketu, která zabraňuje paketům navždy obíhat síť při routovací smyčce. Každý router tuto hodnotu sníží o 1, a při 0 paket zahodí."
+  },
+  {
+    "abbr": "UDP",
+    "en": "User Datagram Protocol",
+    "cs": "Protokol uživatelských datagramů",
+    "desc": "Nespojovaný protokol transportní vrstvy kladoucí důraz na obrovskou rychlost na úkor spolehlivosti (nekontroluje ztrátu paketů). Využití u her a videa."
+  },
+  {
+    "abbr": "UTP",
+    "en": "Unshielded Twisted Pair",
+    "cs": "Nestíněná kroucená dvoulinka",
+    "desc": "Nejběžnější typ metalického měděného kabelu pro sítě LAN, ve kterém se používají kroucené páry vodičů k omezení elektromagnetického rušení bez fyzického stínění."
+  },
+  {
+    "abbr": "VLAN",
+    "en": "Virtual Local Area Network",
+    "cs": "Virtuální lokální síť",
+    "desc": "Logické rozdělení jedné fyzické sítě na více menších nezávislých broadcastových domén na úrovni switchů (L2) pro izolaci provozu."
+  },
+  {
+    "abbr": "VLSM",
+    "en": "Variable Length Subnet Mask",
+    "cs": "Maska podsítě s proměnnou délkou",
+    "desc": "Technika umožňující správcům sítě rozdělit síťový adresní prostor IPv4 na různě velké podsítě přesně podle počtu hostitelů bez plýtvání adresami."
+  },
+  {
+    "abbr": "VTP",
+    "en": "VLAN Trunking Protocol",
+    "cs": "Protokol pro trunkování VLAN",
+    "desc": "Cisco protokol sloužící k automatické centrální distribuci a synchronizaci databáze VLAN napříč desítkami switchů v jedné síti."
+  },
+  {
+    "abbr": "VRRP",
+    "en": "Virtual Router Redundancy Protocol",
+    "cs": "Protokol redundance virtuálního směrovače",
+    "desc": "Otevřený FHRP standard (alternativa k Cisco HSRP), poskytující odolnost výchozí brány proti selhání vytvořením virtuálního master a backup routeru."
+  },
+  {
+    "abbr": "WAN",
+    "en": "Wide Area Network",
+    "cs": "Rozlehlá počítačová síť",
+    "desc": "Počítačová síť rozprostírající se přes rozsáhlé geografické oblasti, typicky propojující vaše lokální pobočky nebo LAN sítě napříč městy a státy."
+  },
+  {
+    "abbr": "WLAN",
+    "en": "Wireless Local Area Network",
+    "cs": "Bezdrátová lokální síť",
+    "desc": "Lokální síť používající k přenosu dat místo ethernetových kabelů rádiové vlny v bezlicenčních pásmech (Wi-Fi, 802.11)."
+  },
+  {
+    "abbr": "WLC",
+    "en": "Wireless LAN Controller",
+    "cs": "Řadič bezdrátových LAN sítí",
+    "desc": "Centrální mozek pro velké Wi-Fi sítě. Zařízení, které řídí konfiguraci a zabezpečení desítek až stovek bezdrátových AP z jednoho místa."
+  }
+]

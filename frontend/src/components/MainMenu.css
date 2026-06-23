@@ -1,0 +1,154 @@
+.main-menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px); /* minus header */
+  padding: 2rem;
+  text-align: center;
+}
+
+.main-menu-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: var(--primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-menu-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 4rem;
+  max-width: 600px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.menu-card {
+  background: var(--node-bg);
+  border: 1px solid var(--node-border);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--node-text);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+}
+
+/* Karta připravená (proklikávací) */
+.menu-card.active {
+  cursor: pointer;
+}
+
+.menu-card.active:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+}
+
+.menu-card.active:hover .icon-wrapper {
+  background: rgba(99, 102, 241, 0.15);
+  transform: scale(1.1);
+}
+
+/* Karta zablokovaná (placeholder) */
+.menu-card.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.status-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.status-badge.coming-soon {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-badge.ready {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background: var(--bg-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.menu-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.menu-card p {
+  color: var(--node-text);
+  opacity: 0.8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Footer */
+.main-footer {
+  margin-top: 4rem;
+  text-align: center;
+  color: var(--text-primary);
+  opacity: 0.8;
+  font-size: 0.9rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--glass-border);
+  width: 100%;
+  max-width: 1000px;
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

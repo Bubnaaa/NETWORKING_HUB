@@ -1,0 +1,50 @@
+.level-selector.compact {
+  margin: 0;
+  padding: 0;
+}
+
+.level-selector.compact .levels-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.level-selector.compact .level-btn {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: auto;
+}
+
+.level-selector.compact .level-btn:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.level-selector.compact .level-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.level-selector.compact .level-number {
+  font-size: 1rem;
+  font-weight: 700;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.level-selector.compact .level-btn.active .level-number {
+  color: white;
+  opacity: 1;
+}
+
+.level-name-compact {
+  font-size: 0.85rem;
+  font-weight: 500;
+}

@@ -1,0 +1,460 @@
+[
+  {
+    "id": "l7",
+    "label": "7. Aplikační (Application) vrstva",
+    "type": "layer",
+    "layerIndex": 7,
+    "level": 1,
+    "children": [
+      {
+        "id": "func7",
+        "label": "Funkce:\nPoskytuje síťové služby přímo uživatelským aplikacím.\nUmožňuje sdílení souborů, odesílání e-mailů a prohlížení webových stránek.\nFunguje jako rozhraní mezi sítí a programem.",
+        "type": "function",
+        "level": 1,
+        "description": "Aplikační vrstva poskytuje protokoly, které aplikace používají ke komunikaci přes síť. Sama o sobě neobsahuje softwarové aplikace (jako Chrome nebo Word), ale poskytuje služby, které tyto aplikace volají v pozadí (např. HTTP požadavek na stažení webu)."
+      },
+      { 
+        "id": "pdu7", "label": "PDU: Uživatelská Data (Payload)\nAdresace: Žádná explicitní\nZařízení: Koncový hostitel (PC, Server)", "type": "pdu", "level": 1,
+        "description": "V aplikační vrstvě nazýváme přenášené bloky prostě Data (nebo Payload). Vrstva nepřidává žádné hlavičky pro směrování sítí."
+      },
+      {
+        "id": "l7_protocols",
+        "label": "Aplikační Protokoly",
+        "type": "category",
+        "level": 2,
+        "children": [
+          { "id": "http_https", "label": "Web: HTTP(80) / HTTPS(443)", "type": "protocol", "level": 3, "description": "Základní protokoly pro přenos webových stránek a API (REST). HTTP je nešifrované a 'stateless' (nepamatuje si stav). HTTPS přidává bezpečnostní vrstvu z L6 (TLS) pro šifrovaný přenos." },
+          { "id": "dns", "label": "Překlad: DNS (53 TCP/UDP)", "type": "protocol", "level": 3, "description": "Domain Name System. Funguje jako internetový 'Zlaté stránky'. Překládá lidsky čitelné domény (www.seznam.cz) na strojové IP adresy (77.75.75.172).\n\n<b>A Záznam:</b> Překlad na IPv4.\n<b>AAAA Záznam:</b> Překlad na IPv6." },
+          { "id": "dhcp", "label": "IP Konfigurace: DHCP (67, 68 UDP)", "type": "protocol", "level": 3, "description": "Dynamic Host Configuration Protocol. Automaticky přiděluje počítačům IP adresu, Masku, Výchozí bránu a DNS server. Odstraňuje nutnost manuální konfigurace.",
+            "children": [
+              { "id": "dora", "label": "Proces D.O.R.A.", "type": "process", "level": 4, "description": "Proces získání IP adresy:\n1. <b>Discover:</b> PC volá 'Je tu DHCP server?' (Broadcast).\n2. <b>Offer:</b> Server nabízí IP.\n3. <b>Request:</b> PC říká 'Beru ji!'.\n4. <b>Acknowledge:</b> Server potvrzuje zápis." }
+            ]
+          },
+          { "id": "files_ftp", "label": "Soubory: FTP(20,21) / TFTP(69)", "type": "protocol", "level": 3, "description": "<b>FTP:</b> File Transfer Protocol. Spolehlivý přenos souborů přes TCP. Port 21 (Control) pro příkazy, Port 20 (Data) pro samotný přenos.\n<b>TFTP:</b> Trivial FTP. Zjednodušená verze přes nespolehlivé UDP. Rychlé pro stahování konfigurací do routerů (Cisco IOS), nemá žádné zabezpečení a přihlašování." },
+          { "id": "remote_mgmt", "label": "Vzdálená správa: SSH(22) / Telnet(23)", "type": "protocol", "level": 3, "description": "Nástroje pro připojení k příkazové řádce (CLI) routerů a serverů na dálku.\n<b>SSH (Secure Shell):</b> Přenáší data plně šifrovaně. Dnes naprostý standard.\n<b>Telnet:</b> Zastaralý. Vše posílá v čistém textu, takže kdokoli na síti (Wireshark) vidí vaše heslo." },
+          { "id": "email_proto", "label": "E-maily: SMTP, POP3, IMAP", "type": "protocol", "level": 3, "description": "<b>SMTP (25):</b> Simple Mail Transfer Protocol. Odesílá a předává poštu mezi servery.\n<b>POP3 (110):</b> Stáhne zprávu ze serveru do zařízení a smaže ji ze serveru (starší přístup).\n<b>IMAP (143):</b> Synchronizuje zprávy mezi serverem a všemi vašimi zařízeními (mobil, PC)." },
+          { "id": "snmp", "label": "Správa: SNMP (161 UDP)", "type": "protocol", "level": 3, "description": "Simple Network Management Protocol. Slouží k monitorování vytížení, teploty a chybových stavů u síťových prvků pomocí zpráv a 'Trapů' do centrálního dohledového systému." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l6",
+    "label": "6. Prezentační (Presentation) vrstva",
+    "type": "layer",
+    "layerIndex": 6,
+    "level": 1,
+    "children": [
+      {
+        "id": "func6",
+        "label": "Funkce:\nZajišťuje formát a reprezentaci dat pro aplikaci.\nProvádí šifrování, kompresi a překlad znakových sad.\nZaručuje, že data budou pro příjemce čitelná.",
+        "type": "function",
+        "level": 1,
+        "description": "Prezentační vrstva funguje jako překladatel pro síť. Definuje způsob formátování dat (aby počítač s Windows a s Linuxem pochopily stejný text), komprimuje data (aby se šetřilo pásmo) a šifruje je pro bezpečnost před odposlechem."
+      },
+      { 
+        "id": "pdu6", "label": "PDU: Formátovaná Data\nAdresace: Žádná\nZařízení: Koncový hostitel", "type": "pdu", "level": 1,
+        "description": "Prezentační vrstva pracuje stále se stejnými daty jako Aplikační vrstva (Payload), pouze je modifikuje pro bezpečný a efektivní přenos."
+      },
+      {
+        "id": "tech_formats",
+        "label": "Technologie a Formáty",
+        "type": "category",
+        "level": 2,
+        "children": [
+          { "id": "charsets", "label": "Znakové sady", "type": "concept", "level": 3, "description": "Překlad lidského textu do jedniček a nul. <b>ASCII</b> (starší, 7-bitové, základní abeceda), <b>UTF-8 / Unicode</b> (moderní, podporuje znaky a emoji celého světa)." },
+          { "id": "multimedia", "label": "Multimédia a Dokumenty", "type": "concept", "level": 3, "description": "Formátování grafických, zvukových a textových souborů, aby po síti prolezly a na obou stranách vypadaly naprosto stejně (<b>JPEG, PNG, MP4, MP3, HTML, JSON</b>)." },
+          { "id": "compression", "label": "Komprese dat", "type": "process", "level": 3, "description": "Matematické zmenšování velikosti přenášených dat bez ztráty informace (např. <b>ZIP, GZIP</b> komprese u webových serverů zrychluje načítání stránek)." }
+        ]
+      },
+      {
+        "id": "encryption_layer",
+        "label": "Šifrování a Zabezpečení",
+        "type": "category",
+        "level": 2,
+        "children": [
+          { "id": "tls_ssl", "label": "TLS / SSL", "type": "protocol", "level": 3, "description": "Kryptografické protokoly, které zajišťují zabezpečenou komunikaci přes internet (např. onen zámeček HTTPS v prohlížeči). Šifrují Payload matematickým klíčem tak, aby ho při fyzickém odposlechu na síti (Man-In-The-Middle) nikdo nedokázal přečíst." }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l5",
+    "label": "5. Relační (Session) vrstva",
+    "type": "layer",
+    "layerIndex": 5,
+    "level": 1,
+    "children": [
+      {
+        "id": "func5",
+        "label": "Funkce:\nVytváří, udržuje a ukončuje relace (dialogy).\nSpravuje synchronizaci a obnovu přerušeného spojení.\nŘídí, kdo a kdy může odesílat data.",
+        "type": "function",
+        "level": 1,
+        "description": "Relační vrstva v OSI modelu navazuje a spravuje 'Dialogy' mezi dvěma aplikacemi. Kontroluje, jestli obě strany naslouchají a jestli bylo vlákno komunikace úspěšně ukončeno. V dnešním reálném světě (TCP/IP model) tuto roli většinou přebírají rovnou aplikace nad ní."
+      },
+      { 
+        "id": "pdu5", "label": "PDU: Data (Relace)\nAdresace: Session ID\nZařízení: Koncový hostitel", "type": "pdu", "level": 1,
+        "description": "V této fázi se často k datům přiřazuje takzvané Session ID. Díky tomu váš prohlížeč pozná, do kterého otevřeného záložkového 'tabu' patří dorazivší data, i když komunikujete s jedním serverem a stahujete data paralelně."
+      },
+      { "id": "session_no_proto", "label": "Žádné vyhrazené protokoly", "type": "concept", "level": 2, "description": "Relační vrstva typicky nepoužívá vlastní vyhrazené protokoly jako ostatní vrstvy. V moderních sítích její úkoly integrují protokoly Aplikační vrstvy (např. Session Cookies a Tokeny v HTTP, SIP protokol pro VoIP volání) nebo se o udržení relace stará spojovaný protokol TCP ve vrstvě čtvrté." },
+      { "id": "netbios_rpc", "label": "Historické API: NetBIOS, RPC", "type": "concept", "level": 2, "description": "Starší koncepty a aplikační rozhraní (API) jako <b>NetBIOS</b> (historické sdílení složek a tiskáren ve starých Windows LAN sítích) nebo <b>RPC</b> (Remote Procedure Call), které explicitně fungovaly jako služby na Relační vrstvě." }
+    ]
+  },
+  {
+    "id": "l4",
+    "label": "4. Transportní (Transport) vrstva",
+    "type": "layer",
+    "layerIndex": 4,
+    "level": 1,
+    "children": [
+      {
+        "id": "func4",
+        "label": "Funkce:\nZajišťuje přenos dat mezi aplikacemi (End-to-End).\nRozděluje (segmentuje) velká data pro síť.\nPomocí Portů rozlišuje služby a multiplexuje.",
+        "type": "function",
+        "level": 1,
+        "description": "Klíčová vrstva, která spojuje svět počítačových aplikací a svět sítě. Bere obří bloky dat z vrchních vrstev, rozseká je na zvládnutelné kousky (Segmenty) a pomocí cílových Portů určuje, k jaké aplikaci v cílovém počítači daná zpráva vůbec patří (zda do Chromu, do Spotify, nebo do Hry)."
+      },
+      { 
+        "id": "pdu4_tcp", "label": "PDU: Segment (TCP) / Datagram (UDP)\nAdresace: Čísla Portů (Zdroj/Cíl)\nZařízení: Firewall, Koncový hostitel", "type": "pdu", "level": 1,
+        "description": "Aplikační Data jsou zde rozsekána a obalena L4 Hlavičkou (obsahující především Zdrojový a Cílový Port). \n\nTímto procesem, kdy data 'padají' OSI vrstvami dolů a postupně se jim nabalují další hlavičky, se říká <b>Zapouzdření (Encapsulation)</b>.",
+        "image": "/images/encapsulation.png"
+      },
+      {
+        "id": "encapsulation_concept",
+        "label": "Proces: Zapouzdření (Encapsulation)",
+        "type": "process",
+        "level": 2,
+        "description": "Základní princip přenosu v sítích! Jak data klesají od uživatele dolů po vrstvách (L7 -> L1), každá vrstva k nim přidá vlastní Hlavičku (Header) se svými síťovými instrukcemi.\n\n<b>Data</b> (L7-L5) -> <b>Segment</b> (přidá L4 Porty) -> <b>Paket</b> (přidá L3 IP adresy) -> <b>Rámec</b> (přidá L2 MAC adresy) -> <b>Bity</b> (odvysílá L1 fyzicky kabelem)."
+      },
+      {
+        "id": "ports_category",
+        "label": "Adresace: Čísla Portů (16 bitů)",
+        "type": "concept",
+        "level": 2,
+        "description": "Zatímco IP adresa v L3 najde dům (počítač), Port najde konkrétní pokoj/dveře v domě (spuštěnou aplikaci na PC).\n\n<b>0 - 1023:</b> Známé porty (Well-Known) pro servery (80 HTTP, 443 HTTPS, 22 SSH).\n<b>1024 - 49151:</b> Registrované porty pro specifické služby.\n<b>49152 - 65535:</b> Dynamické porty (váš PC si je náhodně vybírá jako 'Zdrojové', když se s někým spojuje).",
+        "children": [
+          { "id": "multiplexing", "label": "Multiplexování", "type": "process", "level": 3, "description": "Díky kombinaci <b>Zdrojová IP + Zdrojový port + Cílová IP + Cílový port</b> (čemuž se říká Socket) může počítač vést stovky souběžných komunikací po jediném kabelu a prohlížeč se mu nepomíchá s E-mailem." }
+        ]
+      },
+      {
+        "id": "tcp",
+        "label": "TCP (Transmission Control Protocol)",
+        "type": "protocol",
+        "level": 2,
+        "description": "<b>Spolehlivý, Spojovaný, Pomalý.</b>\nU TCP musí dojít k absolutně každému doručení. Pokud se cestou jeden Segment ztratí, TCP zjistí chybu a vyžádá si ho znovu. Data si čísluje a v cíli je skládá (Sequencing) tak, aby dorazila ve správném pořadí. Využití: Weby, E-maily, Stahování souborů, Zprávy.",
+        "children": [
+          { "id": "tcp_handshake", "label": "3-Way Handshake", "type": "process", "level": 3, "description": "Předtím než TCP pošle vůbec nějaká skutečná data (payload), musí formálně navázat 'Spojení' takzvaným trojitým podáním ruky:\n1. <b>SYN:</b> Chci s tebou komunikovat.\n2. <b>SYN-ACK:</b> Rozumím, taky s tebou chci komunikovat.\n3. <b>ACK:</b> Paráda, potvrzuji spojení. Jdeme na to.\nAž pak se bezpečně přenáší samotná data.", "image": "/images/l4_handshake.png" },
+          { "id": "tcp_windowing", "label": "Flow Control (Windowing)", "type": "process", "level": 3, "description": "TCP neustále hlídá 'rychlost'. Pokud super-rychlý vysílač posílá data, ale cíl (např. levný mobil) je nestíhá zpracovávat (zahazuje je), mobil pošle zpět zprávu s menší 'Window Size', čímž odesílatele inteligentně zpomalí, aby data tekla bezpečně." }
+        ]
+      },
+      {
+        "id": "udp",
+        "label": "UDP (User Datagram Protocol)",
+        "type": "protocol",
+        "level": 2,
+        "description": "<b>Nespolehlivý, Nespojovaný, Bleskově rychlý.</b>\nNeřeší navazování žádného 3-Way Handshake spojení. Prostě data (Datagramy) okamžitě 'vypálí' k cíli. Pokud se cestou paket ztratí nebo dorazí zpřeházený, UDP to absolutně nezajímá a data neobnovuje (na to není čas!). Využití: Online hraní her, VoIP (telefonování), Živý Video Stream, DNS."
+      }
+    ]
+  },
+  {
+    "id": "l3",
+    "label": "3. Síťová (Network) vrstva",
+    "type": "layer",
+    "layerIndex": 3,
+    "level": 1,
+    "children": [
+      {
+        "id": "func3",
+        "label": "Funkce:\nZodpovídá za logickou adresaci (IP adresy).\nSměřuje pakety napříč různými sítěmi (Routing).\nVybírá nejlepší možnou cestu od zdroje k cíli.",
+        "type": "function",
+        "level": 1,
+        "description": "Síťová vrstva je zodpovědná za globální přenos dat. Používá logické IP adresy pro identifikaci sítí a hostitelů na celém světě. Zatímco L2 vrstva doručuje data jen 'k sousedovi', L3 vrstva vymýšlí trasu, jak se přes stovky takových sousedů dostat až k cíli na druhé straně planety."
+      },
+      { 
+        "id": "pdu3", "label": "PDU: Paket (Packet)\nAdresace: Logická IP adresa (Zdroj/Cíl)\nZařízení: Router, L3 Switch", "type": "pdu", "level": 1,
+        "description": "L4 Segment je obalen L3 hlavičkou, čímž vznikne Paket. Tato hlavička obsahuje zdrojovou a cílovou IP adresu, a Time-To-Live (TTL) omezující dobu bloudění paketu sítí."
+      },
+      {
+        "id": "router",
+        "label": "Hardware: Router",
+        "type": "hardware",
+        "level": 2,
+        "description": "Základní kámen internetu. Router propojuje různé sítě a přeposílá Pakety. Udržuje si ve své paměti 'Směrovací tabulku' (Routing table), podle které se rozhoduje, kudy pošle data dál.",
+        "children": [
+          { "id": "acl", "label": "ACL (Access Control List)", "type": "process", "level": 3, "description": "Seznam pravidel (Access Control List) na routeru, který slouží jako základní firewall. Umožňuje filtrovat pakety na základě IP adres, portů a protokolů (Permit/Deny).", "image": "/images/l3_acl.png" },
+          { "id": "nat", "label": "NAT (Network Address Translation)", "type": "process", "level": 3, "description": "Zajišťuje překlad privátních IP adres na veřejné. Jeden router tak dokáže schovat celou vaši domácí síť (s privátními IP) za jedinou veřejnou IP adresu přidělenou poskytovatelem. Vyřešil problém s nedostatkem IPv4 adres.", "image": "/images/l3_nat.png" },
+          { "id": "fhrp", "label": "FHRP (HSRP/VRRP)", "type": "protocol", "level": 3, "description": "First-Hop Redundancy Protocols. Dva fyzické routery se tváří jako jedna virtuální 'Výchozí brána' (Default Gateway). Pokud hlavní router shoří, druhý okamžitě převezme jeho IP a MAC adresu." }
+        ]
+      },
+      {
+        "id": "ip",
+        "label": "IP Adresace (Logická)",
+        "type": "concept",
+        "level": 2,
+        "description": "Každý uzel připojený k síti musí mít unikátní logickou IP adresu, aby mu mohla být směrována data.",
+        "children": [
+          {
+            "id": "ipv4",
+            "label": "IPv4 (32 bitů)",
+            "type": "concept",
+            "level": 3,
+            "description": "Klasická verze IP adresy zapisovaná dekadicky (např. 192.168.1.5). Obsahuje 32 bitů, což umožňuje 'pouze' 4,3 miliardy adres.",
+            "children": [
+              { "id": "ipv4_classes", "label": "Veřejné vs Privátní bloky", "type": "concept", "level": 4, "description": "<b>Privátní bloky:</b> Adresy pro interní sítě (např. 192.168.x.x, 10.x.x.x, 172.16.x.x). Nejsou směrovatelné v internetu a chrání je NAT.\n<b>Veřejné bloky:</b> Globálně unikátní adresy pro servery a routery viditelné v celém internetu." },
+              { "id": "subnet", "label": "Subnetting (Maska sítě)", "type": "process", "level": 4, "description": "Proces dělení velké sítě na menší podsítě. Maska (např. 255.255.255.0 nebo /24) určuje, kolik bitů IP adresy identifikuje samotnou síť a kolik bitů konkrétního hostitele v ní." }
+            ]
+          },
+          {
+            "id": "ipv6",
+            "label": "IPv6 (128 bitů)",
+            "type": "concept",
+            "level": 3,
+            "description": "Nástupce IPv4. Má obrovskou délku 128 bitů zapisovanou hexadecimálně (např. 2001:0db8:85a3::8a2e:0370:7334). Poskytuje prakticky nevyčerpatelné množství adres.",
+            "image": "/images/l3_ipv6.png",
+            "children": [
+              { "id": "ipv6_types", "label": "Typy IPv6 adres", "type": "concept", "level": 4, "description": "<b>Global Unicast:</b> Veřejná, routovatelná adresa do internetu (obdoba veřejné IPv4).\n<b>Link-Local:</b> Začíná na FE80::, slouží výhradně pro komunikaci na jedné lokální lince bez routeru.\n<b>Multicast:</b> Začíná na FF00::, odesílá data skupině. Poznámka: IPv6 už vůbec nepoužívá Broadcast!" },
+              { "id": "slaac", "label": "Autokonfigurace (SLAAC)", "type": "process", "level": 4, "description": "IPv6 umožňuje zřízení adresy bez DHCP serveru (Stateless Address Autoconfiguration). Zařízení si vygeneruje adresu samo (často pomocí své MAC adresy - EUI-64) na základě prefixu, který obdrží od lokálního Routeru." }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "l3_protocols",
+        "label": "Protokoly a Směrování",
+        "type": "category",
+        "level": 2,
+        "description": "Protokoly pro zajištění směrování (výměnu tabulek mezi routery), testování spojení a řešení chyb.",
+        "children": [
+          { "id": "ip_proto", "label": "IP (Internet Protocol)", "type": "protocol", "level": 3, "description": "Hlavní protokol vrstvy. Tvoří strukturu Paketu a doručuje data 'best-effort' způsobem (nespolehlivě, bez záruky doručení)." },
+          { "id": "icmp", "label": "ICMP / ICMPv6", "type": "protocol", "level": 3, "description": "Slouží pro diagnostiku sítě. Zajišťuje příkazy jako <b>Ping</b> a <b>Traceroute</b>. Odesílá zpět upozornění typu 'Cíl je nedostupný'. V IPv6 (ICMPv6) převzal i funkce ARP pomocí zpráv NDP (Neighbor Discovery)." },
+          { "id": "ndp_msgs", "label": "NDP Zprávy u IPv6", "type": "process", "level": 4, "description": "SLAAC a NDP komunikují přes ICMPv6 pomocí 4 zpráv:\n<b>RS (Router Solicitation):</b> PC prosí o konfiguraci sítě.\n<b>RA (Router Advertisement):</b> Router oznamuje síťový prefix.\n<b>NS (Neighbor Solicitation):</b> Dotaz na MAC adresu souseda.\n<b>NA (Neighbor Advertisement):</b> Odpověď s MAC adresou." },
+          { "id": "arp_l3", "label": "ARP (IPv4 Překlad)", "type": "protocol", "level": 3, "description": "Zjišťuje L2 MAC adresu k požadované L3 IP adrese. (Operuje na pomezí L2 a L3 vrstvy, proto bývá uváděn v obou)." },
+          {
+            "id": "routing_protocols",
+            "label": "Směrovací protokoly (Routing)",
+            "type": "category",
+            "level": 3,
+            "description": "Dynamické protokoly, pomocí kterých si routery automaticky vyměňují informace o tom, jaké sítě znají.",
+            "children": [
+              { "id": "rip", "label": "RIP", "type": "protocol", "level": 4, "description": "Routing Information Protocol. Starý Distance-Vector protokol. Cestu volí pouze podle počtu skoků přes routery (Hop Count, maximum je 15). Dnes se používá minimálně." },
+              { "id": "ospf", "label": "OSPF", "type": "protocol", "level": 4, "description": "Open Shortest Path First. Moderní Link-State protokol. Počítá nejrychlejší trasu podle 'ceny' linky (Rychlosti/Propustnosti), používá složitý Dijkstrův algoritmus a vidí celou mapu sítě." },
+              { "id": "eigrp", "label": "EIGRP", "type": "protocol", "level": 4, "description": "Cisco proprietární pokročilý Distance-Vector protokol. Extrémně rychlý při hledání záložní trasy, zohledňuje zpoždění a šířku pásma najednou." }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "l2",
+    "label": "2. Linková (Data Link) vrstva",
+    "type": "layer",
+    "layerIndex": 2,
+    "level": 1,
+    "children": [
+      {
+        "id": "func2",
+        "label": "Funkce:\nPoskytuje fyzické (MAC) adresování.\nDoručuje rámce v rámci jedné lokální sítě (LAN).\nZajišťuje přístup k médiu a detekci chyb (FCS).",
+        "type": "function",
+        "level": 1,
+        "description": "Linková vrstva se stará o doručení dat na lokální lince (v rámci jedné broadcast domény). Na rozdíl od L3, která směruje data celosvětově podle IP adres, L2 používá fyzické MAC adresy k doručení dat od jedné síťové karty (NIC) k druhé na stejném switchi."
+      },
+      { 
+        "id": "pdu2", "label": "PDU: Rámec (Frame)\nAdresace: Fyzická MAC adresa (Zdroj/Cíl)\nZařízení: Switch, Bridge, NIC", "type": "pdu", "level": 1,
+        "description": "L3 Paket je vložen do L2 Rámce. Rámec má kromě hlavičky (obsahující MAC adresy) i patičku (FCS - Frame Check Sequence), která se stará o kontrolu chyb.",
+        "image": "/images/l2_ethernet_frame.png"
+      },
+      {
+        "id": "switch",
+        "label": "Hardware: Switch",
+        "type": "hardware",
+        "level": 2,
+        "description": "Chytré zařízení, které propojuje uzly v síti. Na rozdíl od hloupého Hubu (L1) se Switch učí MAC adresy a posílá Rámce jen na ten port, kam skutečně patří.",
+        "children": [
+          { "id": "mac_table", "label": "CAM Tabulka (MAC Table)", "type": "process", "level": 3, "description": "Switch si do své paměti zapisuje dvojice 'MAC adresa - Port' z hlaviček příchozích rámců. Když přijde rámec pro neznámou cílovou MAC, provede 'Flooding' (rozešle ho na všechny porty kromě příchozího)." },
+          { "id": "stp_protocol", "label": "Protokol: STP (Spanning Tree)", "type": "protocol", "level": 3, "description": "Obrana proti 'Broadcast bouřkám'. Pokud v síti ze switchů vytvoříte fyzickou smyčku, STP automaticky zablokuje určité porty, aby rámce nekroužily do nekonečna." },
+          {
+            "id": "vlan",
+            "label": "VLAN (802.1Q Tag)",
+            "type": "concept",
+            "level": 3,
+            "description": "Virtual LAN (VLAN) umožňuje logicky rozdělit jeden fyzický switch na několik oddělených, nezávislých sítí (broadcast domén).\n\nDo Ethernetového rámce se vloží 4-bytový <b>802.1Q Tag</b>, který určuje, do jaké VLAN rámec patří (např. VLAN 10 - Hosté, VLAN 20 - Management).",
+            "image": "/images/l2_vlan.png"
+          },
+          { "id": "cdp_lldp", "label": "Objevování: CDP & LLDP", "type": "protocol", "level": 3, "description": "Discovery protokoly L2 vrstvy. Zařízení do sítě oznamují 'Kdo jsou' a zjišťují informace o svých sousedech připojených na stejném kabelu (Cisco proprietární CDP vs. otevřený LLDP)." },
+          { "id": "etherchannel", "label": "EtherChannel (LACP/PAgP)", "type": "concept", "level": 3, "description": "Logické slučování více fyzických portů a kabelů do jednoho 'tlustého' portu (Port Channel) pro znásobení šířky pásma a redundanci." },
+          { "id": "poe", "label": "PoE (Power over Ethernet)", "type": "hardware", "level": 3, "description": "Standard umožňující chytrým Switchům napájet malá zařízení (Wi-Fi Access Pointy, IP kamery, IP telefony) rovnou přes datový kroucený kabel. Není nutná elektrická zásuvka." }
+        ]
+      },
+      {
+        "id": "sublayers",
+        "label": "L2 Podvrstvy (Sublayers)",
+        "type": "concept",
+        "level": 2,
+        "description": "IEEE 802 LAN/MAN standardy rozdělují Linkovou vrstvu na dvě podvrstvy: LLC (vrchní) a MAC (spodní).",
+        "children": [
+          { "id": "llc", "label": "LLC (Logical Link Control)\n802.2", "type": "concept", "level": 3, "description": "Vrchní podvrstva, komunikuje se síťovou vrstvou (L3). Slouží k multiplexování síťových protokolů (např. IPv4, IPv6) přes stejnou MAC vrstvu a přidává LLC hlavičku." },
+          { "id": "mac_sub", "label": "MAC (Media Access Control)\n802.3", "type": "concept", "level": 3, "description": "Spodní podvrstva, definuje způsob přístupu k fyzickému médiu a přidává MAC adresy do hlavičky." }
+        ]
+      },
+      {
+        "id": "l2_protocols",
+        "label": "Protokoly a Standardy",
+        "type": "category",
+        "level": 2,
+        "children": [
+          { "id": "ethernet", "label": "Ethernet (802.3)", "type": "protocol", "level": 3, "description": "Nejpoužívanější standard pro drátové LAN sítě. Dříve používal sdílené médium a CSMA/CD, dnes s plně duplexními switchi CSMA/CD není potřeba.",
+            "children": [
+              { "id": "csma_cd", "label": "CSMA/CD", "type": "process", "level": 4, "description": "Historický způsob sdílení média na Ethernetu. PC poslouchá linku. Pokud je ticho, začne vysílat. Pokud dva začnou současně, nastane kolize (Collision), PC vyšlou Jam signal a počkají náhodnou dobu. Na dnešních Full-Duplex switchích už kolize nevznikají." }
+            ]
+          },
+          { "id": "wifi", "label": "Wi-Fi (802.11)", "type": "protocol", "level": 3, "description": "Standard pro bezdrátové LAN (WLAN). Využívá CSMA/CA (Collision Avoidance), jelikož bezdrát je vždy half-duplexní a kolize nelze spolehlivě detekovat." },
+          { "id": "ppp", "label": "PPP (Point-to-Point Protocol)", "type": "protocol", "level": 3, "description": "Protokol používaný pro přímé spojení dvou uzlů bez jakékoliv adresace (např. po staré sériové lince). L2 rámec zde nepotřebuje MAC adresy, protože data nemají po cestě kam jinam odbočit." }
+        ]
+      },
+      {
+        "id": "mac_addressing",
+        "label": "Adresace: MAC (48 bitů)",
+        "type": "concept",
+        "level": 2,
+        "description": "Fyzická adresa vypálená do čipu síťové karty. Zapíše se v šestnáctkové (hex) soustavě (např. 00:1A:2B:3C:4D:5E). Prvních 24 bitů je OUI (identifikátor výrobce), zbylých 24 bitů je unikátní sériové číslo.",
+        "children": [
+          { "id": "mac_unicast", "label": "Unicast MAC", "type": "concept", "level": 3, "description": "Zpráva posílaná jedné konkrétní kartě. (např. 00:11:22:33:44:55)" },
+          { "id": "mac_multicast", "label": "Multicast MAC", "type": "concept", "level": 3, "description": "Zpráva posílaná vybrané skupině karet (MAC začíná 01:00:5E pro IPv4 multicast)." },
+          { "id": "mac_broadcast", "label": "Broadcast MAC", "type": "concept", "level": 3, "description": "Zpráva pro naprosto všechny uzly na síti (FF:FF:FF:FF:FF:FF). Switch tento rámec 'floodne' na všechny aktivní porty." }
+        ]
+      },
+      {
+        "id": "arp",
+        "label": "Protokol: ARP",
+        "type": "protocol",
+        "level": 2,
+        "description": "Address Resolution Protocol (ARP) slouží k překladu IP adres (L3) na MAC adresy (L2).\n\nPočítač zná cílovou IP, ale potřebuje zabalit Rámec. Zařve do sítě Broadcastem: <b>'Kdo má IP 192.168.1.10? Řekněte mi svou MAC!'</b>\nMajitel dané IP adresy odpoví Unicastem a tazatel si to uloží do lokální ARP Cache.",
+        "image": "/images/l2_arp.png"
+      }
+    ]
+  },
+  {
+    "id": "l1",
+    "label": "1. Fyzická (Physical) vrstva",
+    "type": "layer",
+    "layerIndex": 1,
+    "level": 1,
+    "children": [
+      {
+        "id": "func1",
+        "label": "Funkce:\nPřenáší surové bity přes komunikační médium.\nDefinuje elektrické a mechanické specifikace rozhraní.\nZahrnuje konektory, napětí a modulaci signálu.",
+        "type": "function",
+        "level": 1,
+        "description": "Fyzická vrstva (Physical Layer) je nejnižší vrstva modelu OSI. Nestará se o logiku dat, ale pouze o to, jak jedničky a nuly přeměnit na fyzický signál (elektrický proud, světlo nebo rádiové vlny) a poslat je dál. Jsou zde definovány standardy pro kabely, konektory, piny a napěťové úrovně."
+      },
+      { 
+        "id": "pdu1", "label": "PDU: Bit (1/0)\nAdresace: Žádná\nZařízení: Hub, Repeater, Kabeláž", "type": "pdu", "level": 1,
+        "description": "Protocol Data Unit pro fyzickou vrstvu je pouhý Bit. Data jsou zde reprezentována jako nekonečný proud jedniček a nul na médiu."
+      },
+      {
+        "id": "cables",
+        "label": "Média: Kabeláž a Bezdrát",
+        "type": "hardware",
+        "level": 2,
+        "description": "Přenosová média tvoří fyzickou cestu, kudy data cestují. Rozdělujeme je na drátová (metalická, optická) a bezdrátová (vzduch/vakuum).",
+        "children": [
+          {
+            "id": "interference",
+            "label": "Rušení (EMI, Crosstalk, Útlum)",
+            "type": "concept",
+            "level": 3,
+            "description": "Při přenosu po metalických kabelech dochází k degradaci signálu vlivem okolního prostředí.\n\n<b>EMI (Electromagnetic Interference):</b> Elektromagnetické rušení z vnějších zdrojů (např. motory, zářivky).\n<b>RFI (Radio Frequency Interference):</b> Vysokofrekvenční rádiové rušení.\n<b>Crosstalk (Přeslech):</b> Nežádoucí rušení mezi samotnými vlákny uvnitř jednoho kabelu. Minimalizuje se kroucením párů proti sobě.\n<b>Attenuation (Útlum):</b> Slábnutí signálu s rostoucí vzdáleností (proto má měď limit 100m).",
+            "image": "/images/interference.png"
+          },
+          {
+            "id": "twisted_pair",
+            "label": "Kroucená dvojlinka (Twisted Pair)",
+            "type": "hardware",
+            "level": 3,
+            "children": [
+              { "id": "utp_stp", "label": "Stínění: UTP (bez) vs STP (s)", "type": "concept", "level": 4, "description": "<b>UTP (Unshielded Twisted Pair):</b> Nejběžnější typ kabelu, žádné dodatečné stínění.\n<b>STP (Shielded Twisted Pair):</b> Obsahuje kovovou fólii, která odstiňuje rušení zvenčí." },
+              { "id": "cable_cats", "label": "Kategorie (Cat5e, Cat6, Cat6a)", "type": "category", "level": 4 },
+              { "id": "cable_wiring", "label": "Zapojení RJ-45 (T568A/B)", "type": "process", "level": 4 },
+              { "id": "cable_types", "label": "Přímý vs Křížený (MDIX)", "type": "category", "level": 5 }
+            ]
+          },
+          {
+            "id": "fiber",
+            "label": "Optické vlákno (Fiber Optic)",
+            "type": "hardware",
+            "level": 3,
+            "description": "Přenáší data pomocí světelných impulsů. Jsou absolutně imunní vůči elektromagnetickému rušení (EMI) a dosahují obrovských vzdáleností.",
+            "children": [
+              { "id": "smf", "label": "SMF (Single-mode)", "type": "concept", "level": 4, "description": "Používá <b>Laser</b>. Vlákno má úzké jádro (cca 9 µm). Dosah až desítky kilometrů, ale drahé vysílače." },
+              { "id": "mmf", "label": "MMF (Multi-mode)", "type": "concept", "level": 4, "description": "Používá <b>LED</b>. Vlákno má širší jádro. Paprsky se odrážejí. Určeno na kratší vzdálenosti v rámci budovy." }
+            ]
+          },
+          { "id": "wireless", "label": "Bezdrátové (Wi-Fi)", "type": "hardware", "level": 3, "description": "Přenos pomocí elektromagnetických vln vzduchem." }
+        ]
+      },
+      {
+        "id": "connectors",
+        "label": "Hardware: Konektory",
+        "type": "hardware",
+        "level": 2,
+        "description": "Fyzické koncovky kabelů, které se zapojují do síťových karet, switchů nebo routerů.",
+        "children": [
+          {
+            "id": "copper_conn",
+            "label": "Měděné (RJ45, BNC)",
+            "type": "concept",
+            "level": 3,
+            "description": "<b>RJ-45:</b> Standardní 8-pinový konektor pro kroucenou dvojlinku.\n<b>BNC:</b> Bajonetový konektor pro koaxiální kabely.",
+            "image": "/images/copper.png"
+          },
+          {
+            "id": "fiber_conn",
+            "label": "Optické (LC, SC, ST)",
+            "type": "concept",
+            "level": 3,
+            "description": "<b>ST:</b> Starší typ.\n<b>SC:</b> Čtvercový (zastrkávací).\n<b>LC:</b> Moderní, malý, často používaný v SFP modulech.",
+            "image": "/images/fiber.png"
+          }
+        ]
+      },
+      {
+        "id": "topologies",
+        "label": "Fyzické Topologie sítě",
+        "type": "concept",
+        "level": 2,
+        "description": "Fyzická topologie definuje skutečné prostorové uspořádání uzlů a kabelů.\n\n<b>Star (Hvězda):</b> Vše připojeno k centrálnímu switchi.\n<b>Mesh (Pavučina):</b> Každý uzel je spojen s každým. Vysoce odolné.\n<b>Ring (Kruh):</b> Zařízení spojená do kruhu.\n<b>Bus (Sběrnice):</b> Jeden sdílený kabel pro všechny (např. starý koax).",
+        "image": "/images/topologies.png",
+        "children": [
+          { "id": "top_star", "label": "Hvězda (Star)\nVše do centrálního uzlu", "type": "concept", "level": 3 },
+          { "id": "top_mesh", "label": "Pavučina (Mesh)\nKaždý s každým", "type": "concept", "level": 3 },
+          { "id": "top_ring", "label": "Kruh (Ring)\nSpojené do smyčky", "type": "concept", "level": 3 },
+          { "id": "top_bus", "label": "Sběrnice (Bus)\nJeden hlavní kabel", "type": "concept", "level": 3 }
+        ]
+      },
+      {
+        "id": "duplex",
+        "label": "Duplexní Režimy",
+        "type": "process",
+        "level": 3,
+        "description": "Určují, jakým směrem a zda současně mohou data proudit.\n\n<b>Simplex:</b> Jednosměrně (TV, rádio).\n<b>Half-Duplex:</b> Obousměrně, ale ne současně (Vysílačky, Huby).\n<b>Full-Duplex:</b> Obousměrně a současně (Moderní Switche).",
+        "children": [
+          { "id": "dup_simplex", "label": "Simplex\nJedním směrem", "type": "concept", "level": 4 },
+          { "id": "dup_half", "label": "Half-Duplex\nOba směry, ne současně", "type": "concept", "level": 4 },
+          { "id": "dup_full", "label": "Full-Duplex\nOba směry současně", "type": "concept", "level": 4 }
+        ]
+      },
+      { 
+        "id": "encoding", 
+        "label": "Modulace & Kódování", 
+        "type": "process", 
+        "level": 4,
+        "description": "Metody překladu digitálních dat (1 a 0) do fyzického signálu (změna napětí, amplitudy atd.).\n\n<b>Manchester:</b> Změna napětí uprostřed bitového intervalu.\n<b>NRZ:</b> Jednoduché zastoupení (Vysoké napětí = 1, Nízké = 0).",
+        "children": [
+          { "id": "manchester", "label": "Kódování: Manchester", "type": "concept", "level": 5 },
+          { "id": "nrz", "label": "Kódování: NRZ", "type": "concept", "level": 5 }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Default: Light Mode (Škola VDF) */
+  --bg-color: #006783;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --primary: #F7D117; /* Žlutá ze školního loga */
+  --primary-hover: #e0b806;
+  
+  /* Profesionálnější, méně průhledné karty */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  --node-bg: #ffffff;
+  --node-border: #e2e8f0;
+  --node-text: #0f172a;
+  --edge-color: rgba(255, 255, 255, 0.4);
+
+  /* Layer Accent Colors */
+  --accent-1: #ef4444; /* Physical */
+  --accent-2: #f97316; /* Data Link */
+  --accent-3: #eab308; /* Network */
+  --accent-4: #22c55e; /* Transport */
+  --accent-5: #06b6d4; /* Session */
+  --accent-6: #6366f1; /* Presentation */
+  --accent-7: #d946ef; /* Application */
+  --accent-process: #F7D117; /* Změněno z fialové na zlatou */
+}
+
+[data-theme='dark'] {
+  /* Dark Mode */
+  --bg-color: #006783;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  
+  --glass-bg: rgba(0, 0, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  
+  --node-bg: rgba(0, 0, 0, 0.5);
+  --node-border: rgba(255, 255, 255, 0.15);
+  --node-text: #ffffff;
+  --edge-color: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+header {
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.school-logo {
+  height: 70px;
+  object-fit: contain;
+  margin-right: 1rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+
+.back-button:hover {
+  background: rgba(128, 128, 128, 0.1);
+  transform: translateX(-3px);
+}
+
+.header-left h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #ffffff, var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+.flow-wrapper {
+  flex-grow: 1;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* React Flow overides */
+.react-flow__node {
+  border-radius: 8px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.react-flow__handle {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.3);
+  border-radius: 4px;
+}
