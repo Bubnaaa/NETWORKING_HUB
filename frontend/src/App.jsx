@@ -56,7 +56,7 @@ function AppContent() {
               <ArrowLeft size={24} />
             </Link>
           )}
-          <img src="/images/logo.png" alt="Škola VDF Logo" className="school-logo" />
+          <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Škola VDF Logo" className="school-logo" />
           <h1>{pageTitle}</h1>
         </div>
         <div className="header-controls">
