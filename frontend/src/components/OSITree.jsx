@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import osiData from '../data/osi_tree.json';
 import { Layers, Network, Zap, Shield, Globe, Cpu, Server } from 'lucide-react';
 import './OSITree.css';
 import HardwareDetail from './HardwareDetail';
@@ -19,19 +20,9 @@ export default function OSITree({ currentLevel }) {
   const [selectedHardware, setSelectedHardware] = useState(null);
 
   useEffect(() => {
-    // Fetch data from backend
-    fetch('http://localhost:3001/api/osi-model')
-      .then(res => res.json())
-      .then(fetchedData => {
-        // Sort descending so Layer 7 is on top
-        const sortedData = fetchedData.sort((a, b) => b.layer - a.layer);
-        setData(sortedData);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Error fetching data:", err);
-        setLoading(false);
-      });
+    const sortedData = [...osiData].sort((a, b) => b.layer - a.layer);
+    setData(sortedData);
+    setLoading(false);
   }, []);
 
   if (loading) return <div className="loading">Načítání architektury sítě...</div>;

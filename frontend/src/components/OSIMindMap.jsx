@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import osiData from '../data/osi_tree.json';
 import { ReactFlow, Controls, Background, applyNodeChanges, applyEdgeChanges, Panel, MiniMap } from '@xyflow/react';
 import dagre from 'dagre';
 import './OSIMindMap.css';
@@ -306,17 +307,8 @@ export default function OSIMindMap({ currentLevel }) {
   }, [currentLevel]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/osi-model')
-      .then(res => {
-        if (!res.ok) throw new Error("Chyba HTTP: " + res.status);
-        return res.json();
-      })
-      .then(data => setRawData(data))
-      .catch(err => {
-        console.error("Error fetching data:", err);
-        setError("Nepodařilo se připojit k backendu.");
-        setLoading(false);
-      });
+    setRawData(osiData);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
